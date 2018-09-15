@@ -13,6 +13,7 @@ namespace Tests
     using OpenTracing.Noop;
     using OpenTracing.Propagation;
     using OpenTracing.Util;
+    using WpfApp1;
 
     [TestFixture]
     class TDD
@@ -20,6 +21,9 @@ namespace Tests
         [Test]
         public void TestingIt()
         {
+            MutableGlobalTracer.Initialize(globalTracer: new FakeConsoleTracer("A"));
+            TestDataGenerator.GenerateTestData().Wait();
+            return;
             MutableGlobalTracer.Initialize(globalTracer: new FakeConsoleTracer("A"));
 
             using (GlobalTracer.Instance

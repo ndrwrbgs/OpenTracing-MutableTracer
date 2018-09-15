@@ -5,7 +5,7 @@
     using System.Threading.Tasks;
     using OpenTracing.Util;
 
-    internal static class TestDataGenerator
+    public static class TestDataGenerator
     {
         public static async Task GenerateTestData()
         {

@@ -9,9 +9,13 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+[assembly:Fody.ConfigureAwait(false)]
+
 namespace WpfApp1
 {
     using System.Diagnostics;
+    using System.Threading;
+    using System.Threading.Tasks;
     using System.Windows.Threading;
     using OpenTracing.Contrib.SystemDiagnostics.ToOpenTracing;
     using OpenTracing.Util;
@@ -29,7 +33,17 @@ namespace WpfApp1
             MainWindow.ConnectTracing(this.Tree);
 
             App.Current.Dispatcher.InvokeAsync(
-                async () => TestDataGenerator.GenerateTestData());
+                async () =>
+                {
+                    await Task.Delay(1000);
+
+                    if (SynchronizationContext.Current != null)
+                    {
+                        throw new Exception();
+                    }
+
+                    return TestDataGenerator.GenerateTestData();
+                });
         }
 
         private static void ConnectTracing(TreeView tree)

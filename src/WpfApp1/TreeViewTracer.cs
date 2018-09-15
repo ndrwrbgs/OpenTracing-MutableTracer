@@ -113,12 +113,26 @@
                         };
                         treeItem.Items.Add(
                             treeViewItem);
-                        treeItem.IsExpanded = false;
+                        if (!IsChildrenSelected(treeItem))
+                        {
+                            treeItem.IsExpanded = false;
+                        }
+
                         treeItem.Header += $" {GetDateTime()}: Finished";
                         this.SignalItemUpdate(treeViewItem);
                     });
 
                 this.UpdateStackSpanFinishing(underlyingSpan);
+            }
+
+            /// <summary>
+            /// TODO: Would be better to see if it was manually expanded, and leave those expanded
+            /// </summary>
+            private bool IsChildrenSelected(TreeViewItem treeItem)
+            {
+                if (treeItem.IsSelected)
+                    return true;
+                return treeItem.Items.OfType<TreeViewItem>().Any(t => IsChildrenSelected(t));
             }
 
             private void UpdateStackSpanFinishing(ISpan eSpan)
