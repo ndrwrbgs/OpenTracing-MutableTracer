@@ -64,6 +64,6 @@ using (GlobalTracer.Instance
 }
 ```
 
-FakeConsoleTracer("A") will receive `Overall`, `Operation1.1`/`Operation3.1` and then `Operation1.2`/`Operation3.2`
-FakeConsoleTracer("B") will receive `Operation1.1` then `Operation1.2`
-FakeConsoleTracer("C") will receive `Operation3.1` then `Operation3.2`
+* FakeConsoleTracer("A") will receive `Overall`, `Operation1.1`/`Operation3.1` and then `Operation1.2`/`Operation3.2`
+* FakeConsoleTracer("B") will receive `Operation1.1` then `Operation1.2`
+* FakeConsoleTracer("C") will receive `Operation3.1` then `Operation3.2`
