@@ -11,56 +11,56 @@ Generally, readers should prefer to set an AsyncLocal sink for the output - e.g.
 MutableGlobalTracer.Initialize(globalTracer: new FakeConsoleTracer("A"));
 
 using (GlobalTracer.Instance
-	.BuildSpan("Overall")
-	.StartActive())
+  .BuildSpan("Overall")
+  .StartActive())
 {
-	var operation1 = Task.Run(
-		async () =>
-		{
-			using (MutableGlobalTracer.UseTracer(new FakeConsoleTracer("B")))
-			{
-				using (GlobalTracer.Instance
-					.BuildSpan("Operation1.1")
-					.StartActive())
-				{
-				}
+  var operation1 = Task.Run(
+    async () =>
+    {
+      using (MutableGlobalTracer.UseTracer(new FakeConsoleTracer("B")))
+      {
+        using (GlobalTracer.Instance
+          .BuildSpan("Operation1.1")
+          .StartActive())
+        {
+        }
 
-				// To make sure operation3 has also started before this finishes
-				await Task.Delay(100);
+        // To make sure operation3 has also started before this finishes
+        await Task.Delay(100);
 
-				using (GlobalTracer.Instance
-					.BuildSpan("Operation1.2")
-					.StartActive())
-				{
-				}
-			}
-		});
-		
+        using (GlobalTracer.Instance
+          .BuildSpan("Operation1.2")
+          .StartActive())
+        {
+        }
+      }
+    });
+    
   // Obviously this is a cutting from code I was testing with, sorry for the variable names :)
-	var operation3 = Task.Run(
-		async () =>
-		{
-			using (MutableGlobalTracer.UseTracer(new FakeConsoleTracer("C")))
-			{
-				using (GlobalTracer.Instance
-					.BuildSpan("Operation3.1")
-					.StartActive())
-				{
-				}
+  var operation3 = Task.Run(
+    async () =>
+    {
+      using (MutableGlobalTracer.UseTracer(new FakeConsoleTracer("C")))
+      {
+        using (GlobalTracer.Instance
+          .BuildSpan("Operation3.1")
+          .StartActive())
+        {
+        }
 
-				// To make sure operation1 has also started before this finishes
-				await Task.Delay(100);
+        // To make sure operation1 has also started before this finishes
+        await Task.Delay(100);
 
-				using (GlobalTracer.Instance
-					.BuildSpan("Operation3.2")
-					.StartActive())
-				{
-				}
-			}
-		});
+        using (GlobalTracer.Instance
+          .BuildSpan("Operation3.2")
+          .StartActive())
+        {
+        }
+      }
+    });
 
-	operation1.Wait();
-	operation3.Wait();
+  operation1.Wait();
+  operation3.Wait();
 }
 ```
 
