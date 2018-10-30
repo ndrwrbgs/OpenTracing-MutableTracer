@@ -9,7 +9,8 @@
 
   <ItemGroup>
     <PackageReference Include="OpenTracing" Version="0.12.0" />
-    <PackageReference Include="OpenTracing.Contrib.StronglyTyped" Version="0.1.0" />
+    <PackageReference Include="OpenTracing.Contrib.StronglyTyped" Version="0.2.0" />
+    <PackageReference Include="OpenTracing.Contrib.Composite" Version="0.1.0" />
     <PackageReference Include="JetBrains.Annotations" Version="11.1.0">
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>

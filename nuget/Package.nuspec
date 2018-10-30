@@ -10,12 +10,13 @@
     <iconUrl>http://opentracing.io/img/favicon-32x32.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>Mutable ITracer for hooking into GlobalTracer.Instance.</description>
-    <releaseNotes>Import StronglyTyped rather than expose it</releaseNotes>
+    <releaseNotes>Import StronglyTyped and Composite rather than expose them</releaseNotes>
     <copyright>Copyright 2018</copyright>
     <tags>OpenTracing</tags>
     <dependencies>
       <dependency id="OpenTracing" version="0.12.0" />
-      <dependency id="OpenTracing.Contrib.StronglyTyped" version="0.1.0" />
+      <dependency id="OpenTracing.Contrib.StronglyTyped" version="0.2.0" />
+      <dependency id="OpenTracing.Contrib.Composite" version="0.1.0" />
     </dependencies>
   </metadata>
 </package>
