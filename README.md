@@ -1,3 +1,5 @@
+[![NuGet](https://img.shields.io/nuget/v/OpenTracing.Contrib.MutableTracer.svg)](https://www.nuget.org/packages/OpenTracing.Contrib.MutableTracer)
+
 # OpenTracing-MutableTracer
 The OpenTracing C# API provides an immutable GlobalTracer. This library provides a tracer you can use to mutate the current `GlobalTracer.Instance` as required.
 
